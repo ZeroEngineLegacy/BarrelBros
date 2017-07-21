@@ -1,0 +1,65 @@
+class SplineHelper : ZilchComponent
+{
+  [Dependency] var HierarchySpline : HierarchySpline;
+  
+  var ThicknessInternal : Real = 0.25;
+  var SpacingInternal : Real = 0.25;
+  
+  [Property] var Thickness : Real
+  {
+    get { return this.ThicknessInternal; }
+    set
+    {
+      this.ThicknessInternal = value;
+      if(this.Owner != null)
+        this.Owner.DispatchEvent(Events.SplineModified, SplineEvent());
+    }
+  }
+  [Property] var Spacing : Real
+  {
+    get { return this.SpacingInternal; }
+    set
+    {
+      this.SpacingInternal = value;
+      if(this.Owner != null)
+        this.Owner.DispatchEvent(Events.SplineModified, SplineEvent());
+    }
+  }
+  
+  function ComputeSplineQuads(callback : delegate (p0 : Real3, p1 : Real3, p2 : Real3, p3 : Real3, d0 : Real, d1 : Real))
+  {
+    var spline = this.HierarchySpline.Spline;
+    
+    var totalDistance = spline.TotalDistance;
+    var iterations = Math.Ceil(totalDistance / this.Spacing);
+    
+    var prev = 0.0;
+    
+    for(var i = 1; i <= iterations; ++i)
+    {
+      var distance = i * this.Spacing;
+      var currDistance = Math.Min(distance, totalDistance);
+      var prevPoint = spline.SampleDistance(prev);
+      var currPoint = spline.SampleDistance(currDistance);
+      
+      var p0 = prevPoint.WorldPoint;
+      var p1 = currPoint.WorldPoint;
+      p0 = this.Owner.Transform.TransformPointInverse(p0);
+      p1 = this.Owner.Transform.TransformPointInverse(p1);
+      
+      var tangent0 = this.Owner.Transform.TransformNormalInverse(prevPoint.WorldTangent);
+      var tangent1 = this.Owner.Transform.TransformNormalInverse(currPoint.WorldTangent);
+      
+      tangent0 = Math.Normalize(Real3(tangent0.Y, -tangent0.X, 0)) * this.Thickness;
+      tangent1 = Math.Normalize(Real3(tangent1.Y, -tangent1.X, 0)) * this.Thickness;
+      
+      var tl = p0 - tangent0;
+      var bl = p0 + tangent0;
+      var br = p1 + tangent1;
+      var tr = p1 - tangent1;
+      callback(tl, bl, br, tr, prev, currDistance);
+      
+      prev = currDistance;
+    }
+  }
+}

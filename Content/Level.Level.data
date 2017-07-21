@@ -80,7 +80,7 @@ Level
 		var LinkId = 3
 		Transform 
 		{
-			var Translation = Real3{-13.3207932, -5.52188301, 32.708271}
+			var Translation = Real3{13.3235245, -8.83811569, 7.40815878}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{-0, -1.09278471e-08, 0, 1}
 		}
@@ -133,16 +133,16 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 24.4280567
+			var Size = 29.836462
 		}
 		EditorCameraController 
 		{
 			var ControlMode = ControlMode.ZPlane
 			var Previous3DMode = ControlMode.Orbit
-			var LookDistance = 27.1827736
+			var LookDistance = 7.4081583
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-13.3207932, -5.52188301, 5.52549648}
+			var LookTarget = Real3{13.3235245, -8.83811569, 4.54591287e-07}
 			var MoveSensitivity = 1
 		}
 		Hierarchy 
@@ -230,7 +230,7 @@ Level
 		var LinkId = 5
 		Transform 
 		{
-			var Translation = Real3{0, -2.70756149, 0}
+			var Translation = Real3{0, 0, 0}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -238,7 +238,7 @@ Level
 		{
 			var Closed = false
 			var SplineType = SplineType.CatmulRom
-			var Error = 0.00999999978
+			var Error = 0.100000001
 			var DebugDrawSpline = false
 			var SplineColor = Real4{0, 0, 0, 1}
 		}
@@ -268,6 +268,7 @@ Level
 		}
 		SplineHelper 
 		{
+			var QuickMode = true
 			var Thickness = 0.5
 			var Spacing = 0.100000001
 		}
@@ -275,7 +276,7 @@ Level
 		{
 			var Active = true
 			var DebugDrawQuads = false
-			var Scroll = Real2{4, 2}
+			var Scroll = Real2{10, 2}
 		}
 		SplineCollision 
 		{
@@ -290,7 +291,7 @@ Level
 				var LinkId = 6
 				Transform 
 				{
-					var Translation = Real3{-20.4558811, -7.0149498, 0}
+					var Translation = Real3{-21.3916492, -12.7108231, 0}
 					var Scale = Real3{0.100000001, 0.100000001, 0.100000001}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
@@ -313,7 +314,7 @@ Level
 				var LinkId = 7
 				Transform 
 				{
-					var Translation = Real3{-14.2722101, -9.1613512, 0}
+					var Translation = Real3{-16.4694405, -15.3311157, 0}
 					var Scale = Real3{0.100000001, 0.100000001, 0.100000001}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
@@ -336,7 +337,7 @@ Level
 				var LinkId = 8
 				Transform 
 				{
-					var Translation = Real3{-5.30890179, -0.729099274, 0}
+					var Translation = Real3{-9.326931, -5.16837883, 0}
 					var Scale = Real3{0.100000001, 0.100000001, 0.100000001}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
@@ -359,7 +360,7 @@ Level
 				var LinkId = 9
 				Transform 
 				{
-					var Translation = Real3{4.02317142, -0.337644696, 0}
+					var Translation = Real3{5.18085814, -2.60945702, 0}
 					var Scale = Real3{0.100000001, 0.100000001, 0.100000001}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
@@ -405,7 +406,7 @@ Level
 				var LinkId = 11
 				Transform 
 				{
-					var Translation = Real3{23.4627934, -11.0357876, 0}
+					var Translation = Real3{23.4627934, -8.06306362, 0}
 					var Scale = Real3{0.100000001, 0.100000001, 0.100000001}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}

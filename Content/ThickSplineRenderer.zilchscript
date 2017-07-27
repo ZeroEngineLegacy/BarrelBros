@@ -18,7 +18,13 @@ class ThickSplineRenderer : ZilchComponent
     this.Mesh.Vertices.AddAttribute(VertexSemantic.Uv, VertexElementType.Real, 2);
     //this.Mesh.Vertices.AddAttribute(VertexSemantic.Normal, VertexElementType.Real, 3);
     
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
     Zero.Connect(this.Owner, Events.SplineModified, this.OnSplineModified);
+  }
+
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    this.Rebuild();
   }
   
   function AddQuadToMesh(tl : Real3, bl : Real3, br : Real3, tr : Real3, d0 : Real, d1 : Real)
@@ -54,6 +60,11 @@ class ThickSplineRenderer : ZilchComponent
   }
 
   function OnSplineModified(event : SplineEvent)
+  {
+    this.Rebuild();
+  }
+  
+  function Rebuild()
   {
     this.Mesh.Indices.Clear();
     this.Mesh.Vertices.ClearData();

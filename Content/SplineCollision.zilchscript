@@ -3,35 +3,24 @@ class SplineCollision : ZilchComponent
   [Dependency] var SplineHelper : SplineHelper;
   
   [Property] var Thickness : Real = 0.5;
-  [Property] var DebugDrawMesh : Boolean = false;
-  
-  var ChildSegments : Array[Cog] = Array[Cog]();
   
   var Mesh : PhysicsMesh = PhysicsMesh.CreateRuntime();
   
   function Initialize(init : CogInitializer)
   {
-    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
     Zero.Connect(this.Owner, Events.SplineModified, this.OnSplineModified);
-    //Zero.Connect(this.Space, Events.FrameUpdate, this.OnLogicUpdate);
+    
   }
-
-  function OnLogicUpdate(event : UpdateEvent)
-  {
-    //if(this.DebugDrawMesh)
-    //  this.Owner.Collider.DebugDraw();
-    //this.Owner.MeshCollider.DrawFaces();
-  }
-
-  function OnSplineModified(event : SplineEvent)
-  {
-    this.RebuildGeometry();
-  }
-
+  
   function OnAllObjectsInitialized(event : CogInitializerEvent)
   {
     this.Owner.MeshCollider.PhysicsMesh = this.Mesh;
+    this.RebuildGeometry();
+  }
+  
+  function OnSplineModified(event : SplineEvent)
+  {
     this.RebuildGeometry();
   }
   

@@ -61,10 +61,6 @@ class SweptInput2D : ZilchComponent
     
     var filter = CastFilter();
     filter.IgnoreGhost = false;
-    var results = this.Space.PhysicsSpace.CastSphere(sphere, 10, filter);
-    foreach(var result in results)
-    {
-      result.ObjectHit.DispatchEvent(Events.Interact, ZilchEvent());
-    }
+    this.Space.PhysicsSpace.DispatchInSphere(Events.Interact, ZilchEvent(), sphere, filter);
   }
 }
